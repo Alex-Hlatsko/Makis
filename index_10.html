@@ -1,0 +1,35 @@
+<html data-scrapbook-source="https://ams.creativecdn.com/topics-membership?ntk=aQPI9hMvinHNB_jxoUbclGOlJLPktL-arWvNwKPJfRPuBDs2EC9807VAKXnhsmRfw8Lwz7zfB9R3dzwJ-no2tg"><head><meta charset="UTF-8" data-scrapbook-orig-null-node-20240116113850034=""></head><body>
+<script>
+function ignoreAsyncResult(x) { }
+
+function readResponse(r) {
+    try {
+        if (r.ok) {
+            r.blob().then(ignoreAsyncResult, ignoreAsyncResult);
+        }
+    } catch (e) { }
+}
+
+function handleTopics(result) {
+    try {
+        if (Array.isArray(result)) {
+            var topicIds = result.map(function (topic) {
+                return topic.topic;
+            });
+            if (topicIds.length > 0 || Math.random() < 0.001) {
+                fetch('https://ams.creativecdn.com/topics-membership?ntk=aQPI9hMvinHNB_jxoUbclGOlJLPktL-arWvNwKPJfRPuBDs2EC9807VAKXnhsmRfw8Lwz7zfB9R3dzwJ-no2tg&t=' + topicIds.join(','))
+                    .then(readResponse, ignoreAsyncResult);
+            }
+        }
+    } catch (e) { }
+}
+
+try {
+    if (document.browsingTopics) {
+        document.browsingTopics()
+            .then(handleTopics, ignoreAsyncResult);
+    }
+} catch (e) { }
+</script>
+
+</body></html>
